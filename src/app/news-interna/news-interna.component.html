@@ -1,0 +1,134 @@
+<app-header></app-header>
+<section *ngIf="newsDetail" class="py-12 mt-2 bg-white sm:py-16 lg:py-20">
+  <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <div class="max-w-xl mx-auto text-center">
+      <h1 class="mt-6 text-4xl font-bold text-gray-900 sm:text-3xl">
+        {{ newsDetail[0].title }}
+      </h1>
+
+      <div class="flex items-center justify-center mt-8 space-x-2">
+        <p class="text-base font-medium text-gray-900">
+          <a href="#" title="" class="text-red-600">
+            {{ newsDetail[0].category }}
+          </a>
+        </p>
+        <span class="text-base font-medium text-gray-500"> • </span>
+        <p class="text-base font-medium text-gray-500">
+          {{ newsDetail[0].publish_date | date : "dd/MM/yyyy HH:mm" }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8 sm:mt-12 lg:mt-16 aspect-w-16">
+      <img
+        class="object-cover w-full lg:w-2/4 mx-auto"
+        [src]="newsDetail[0].image"
+        alt="{{ newsDetail[0].title }}" />
+    </div>
+
+    <div
+      class="grid grid-cols-1 mt-8 sm:mt-12 lg:mt-16 lg:grid-cols-12 lg:gap-x-12 gap-y-8">
+      <div class="lg:col-span-2 lg:self-start lg:sticky lg:top-6 lg:order-last">
+        <ul
+          class="flex space-x-3 lg:space-x-0 lg:space-y-4 lg:flex-col lg:items-center">
+          <li>
+            <a
+              (click)="shareOnFacebook()"
+              target="_blank"
+              title="Compartilhar no Facebook"
+              class="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+              <span class="sr-only"> Facebook </span>
+              <svg
+                class="w-8 h-8"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              (click)="shareOnWhatsApp()"
+              target="_blank"
+              title="Compartilhar no WhatsApp"
+              class="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+              <span class="sr-only"> WhatsApp </span>
+              <svg
+                class="w-8 h-8"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.014 8.00613C6.12827 7.1024 7.30277 5.87414 8.23488 6.01043L8.23339 6.00894C9.14051 6.18132 9.85859 7.74261 10.2635 8.44465C10.5504 8.95402 10.3641 9.4701 10.0965 9.68787C9.7355 9.97883 9.17099 10.3803 9.28943 10.7834C9.5 11.5 12 14 13.2296 14.7107C13.695 14.9797 14.0325 14.2702 14.3207 13.9067C14.5301 13.6271 15.0466 13.46 15.5548 13.736C16.3138 14.178 17.0288 14.6917 17.69 15.27C18.0202 15.546 18.0977 15.9539 17.8689 16.385C17.4659 17.1443 16.3003 18.1456 15.4542 17.9421C13.9764 17.5868 8 15.27 6.08033 8.55801C5.97237 8.24048 5.99955 8.12044 6.014 8.00613Z" />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 23C10.7764 23 10.0994 22.8687 9 22.5L6.89443 23.5528C5.56462 24.2177 4 23.2507 4 21.7639V19.5C1.84655 17.492 1 15.1767 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23ZM6 18.6303L5.36395 18.0372C3.69087 16.4772 3 14.7331 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C11.0143 21 10.552 20.911 9.63595 20.6038L8.84847 20.3397L6 21.7639V18.6303Z" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden lg:block lg:col-span-2"></div>
+
+      <article
+        class="prose lg:col-span-8 max-w-none prose-gray prose-blockquote:px-8 prose-blockquote:py-3 prose-blockquote:lg:text-xl prose-blockquote:font-medium prose-blockquote:text-gray-900 prose-blockquote:border-gray-900 prose-blockquote:border-l-2 prose-blockquote:lg:leading-9 prose-blockquote:not-italic prose-blockquote:bg-gray-100 prose-blockquote:text-lg prose-blockquote:leading-8">
+        <article class="prose lg:col-span-8 max-w-none prose-gray">
+          <div [innerHTML]="newsDetail[0].content"></div>
+        </article>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="py-12 bg-white sm:py-16 lg:py-20">
+  <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <div class="max-w-md">
+      <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+        Conferir outras notícias
+      </h2>
+    </div>
+
+    <div
+      class="grid grid-cols-1 mt-16 lg:mt-20 lg:grid-cols-2 gap-y-12 lg:gap-y-16 lg:gap-x-32 xl:mt-24">
+      <div *ngFor="let news of otherNews" class="flex items-center">
+        <a
+          [routerLink]="['/noticia', news.slug]"
+          (click)="scrollToTop()"
+          title=""
+          class="shrink-0">
+          <img
+            class="w-28 h-28 rounded-xl object-cover"
+            [src]="news.image"
+            alt="{{ news.title }}" />
+        </a>
+
+        <div class="flex-1 ml-8">
+          <div class="flex items-center space-x-2">
+            <p class="text-sm font-medium text-gray-900">
+              <a
+                [routerLink]="['/noticia', news.slug]"
+                title=""
+                class="text-red-600">
+                {{ news.category }}
+              </a>
+            </p>
+            <span class="text-sm font-medium text-gray-900"> • </span>
+            <p class="text-sm font-medium text-gray-900">
+              {{ news.publish_date | date : "dd/MM/yyyy HH:mm" }}
+            </p>
+          </div>
+          <p
+            class="max-w-xs mt-3 text-xl font-bold text-gray-900 group-hover:text-gray-600">
+            <a [routerLink]="['/noticia', news.slug]" title="">
+              {{ news.title }}
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
