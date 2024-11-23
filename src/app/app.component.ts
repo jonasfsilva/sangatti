@@ -339,4 +339,7 @@ export class AppComponent {
   checkScreenSize() {
     this.isMobile = window.innerWidth < 768; // Define mobile breakpoint
   }
+  toggleChat() {
+    window.open("https://wa.me/5511980720119", "_blank");
+  }
 }

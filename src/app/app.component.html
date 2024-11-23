@@ -123,12 +123,6 @@
                 fill="#1C274C" />
             </svg>
           </a> -->
-          <a
-            href="https://wa.me/5511980720119"
-            target="_blank"
-            class="inline-flex pulse items-center justify-center w-auto px-6 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-xl transition-all duration-200 bg-green-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white hover:bg-gray-700">
-            FALAR COM ENGENHEIRO
-          </a>
         </div>
       </div>
     </div>
@@ -240,7 +234,7 @@
     </div>
   </div>
 </section>
-
+<app-blog-items></app-blog-items>
 <section id="sobre" class="py-10 bg-white sm:py-16 lg:py-16">
   <div class="max-w-7xl px-4 mx-auto sm:px-2 lg:px-2">
     <div class="grid grid-cols-1 mt-8 md:mt-20 gap-y-4 md:grid-cols-2 gap-x-2">
@@ -287,10 +281,9 @@
 
 <section id="servico" class="py-12 bg-gray-100 sm:py-16 lg:py-10 xl:py-20">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-    <div
-      class="max-w-md mx-auto lg:max-w-full lg:mx-0 flex items-center justify-between">
+    <div class="w-full lg:max-w-full lg:mx-0 grid sm:flex">
       <h2
-        class="text-2xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
+        class="text-2xl w-full text-center sm:text-start font-semibold tracking-tight text-black sm:text-4xl lg:text-4xl">
         Nossos serviços e soluções
       </h2>
 
@@ -298,7 +291,7 @@
         href="https://wa.me/5511980720119"
         target="_blank"
         title=""
-        class="inline-flex pulse float-right items-center justify-center w-auto px-6 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-xl transition-all duration-200 bg-green-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white hover:bg-gray-700"
+        class="pulse mt-4 sm:mt-0 float-right justify-center w-full sm:w-80 px-6 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-xl transition-all duration-200 bg-green-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white hover:bg-gray-700"
         role="button">
         FALAR COM ENGENHEIRO
       </a>
@@ -1810,3 +1803,87 @@
     </div>
   </div>
 </section>
+<div
+  (click)="toggleChat()"
+  class="flex items-center fixed bottom-4 z-50 right-2 justify-center w-16 h-16 bg-white rounded-full shadow-lg cursor-pointer">
+  <img src="../../assets/images/icon-whatsapp.svg" class="w-16 h-16" />
+</div>
+
+<footer class="py-12 bg-gray-300 lg:py-20 sm:py-16">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="lg:flex lg:items-start lg:justify-between">
+      <div class="text-center lg:text-left">
+        <a href="#" title="" class="flex">
+          <img
+            class="w-auto mx-auto h-12 lg:mx-0"
+            src="../assets/images/logo.png"
+            alt="" />
+        </a>
+        <p class="mt-6 text-base font-normal text-gray-800 lg:max-w-xs">
+          Garantimos qualidade e confiabilidade em cada serviço.
+        </p>
+      </div>
+
+      <div class="mt-6 lg:mt-0">
+        <div class="flex items-center justify-center lg:justify-start">
+          <div
+            class="inline-flex items-center justify-center px-5 py-4 border border-gray-800 lg:w-auto rounded-2xl">
+            <svg
+              class="w-6 h-6 text-gray-600 shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href="#" title="" class="ml-4 text-lg font-normal text-gray-800">
+              eng.diego.menegatti@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <ul
+          class="flex items-center justify-center mt-8 space-x-6 lg:justify-start sm:space-x-12">
+          <a
+            href="#sobre"
+            title=""
+            class="text-sm font-medium text-gray-900 transition-all duration-200 rounded hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+            Sobre nós
+          </a>
+
+          <a
+            href="#servico"
+            title=""
+            class="text-sm font-medium text-gray-900 transition-all duration-200 rounded hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+            Serviços
+          </a>
+
+          <a
+            href="#NR12"
+            title=""
+            class="text-sm font-medium text-gray-900 transition-all duration-200 rounded hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+            NR 12
+          </a>
+
+          <a
+            href="#projeto"
+            title=""
+            class="text-sm font-medium text-gray-900 transition-all duration-200 rounded hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+            Projetos Mecânicos
+          </a>
+
+          <a
+            href="#vida"
+            title=""
+            class="text-sm font-medium text-gray-900 transition-all duration-200 rounded hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+            NR 13
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
