@@ -27,6 +27,8 @@ export class SectionService {
     "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/projeto-de-climatizacao";
   private apiPost =
     "https://octopus-app-yiik3.ondigitalocean.app/api/v1/leads/";
+  private apiLogos =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/atendemos-empresas-nacionais-e-multinacionais-em-todo-o-brasil";
 
   constructor(private http: HttpClient) {}
 
@@ -60,5 +62,8 @@ export class SectionService {
 
   getPost() {
     return this.http.get<any>(this.apiPost);
+  }
+  getLogos() {
+    return this.http.get<any>(this.apiLogos);
   }
 }

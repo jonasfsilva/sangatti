@@ -78,7 +78,7 @@ export class HomeComponent {
       alt: "Incanto",
     },
   ];
-
+  logosList: any;
   currentIndex = 0;
   visibleLogos = this.logos.slice(0, 4);
   sectionLaudos: any;
@@ -97,6 +97,19 @@ export class HomeComponent {
     this.fetchLaudos();
     this.testemunhas();
     this.listClima();
+    this.getLogos();
+  }
+
+  getLogos() {
+    this.sectionService.getLogos().subscribe(
+      (data) => {
+        this.logosList = data;
+        console.log("Section Data:", data);
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
   }
   listClima() {
     this.sectionService.getClima().subscribe(

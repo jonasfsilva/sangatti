@@ -37,12 +37,10 @@
         <div>
           <h2
             class="text-3xl font-bold leading-tight text-white sm:text-2xl lg:text-3xl lg:leading-tight">
-            Atendemos empresas <br />Nacionais e Multinacionais em<br />
-            todo o Brasil
+            {{ logosList.main_text }}
           </h2>
           <p class="mt-4 text-base text-gray-50">
-            Seja para grandes corporações ou empresas locais, garantimos
-            eficiência, inovação e excelência em cada projeto realizado.
+            {{ logosList.secondary_text }}
           </p>
         </div>
       </div>
@@ -65,23 +63,18 @@
               d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h2
-          class="text-3xl w-full text-center mb-10 font-bold leading-tight text-white sm:text-3xl lg:text-3xl lg:leading-tight">
-          Alguns de nossos clientes
-        </h2>
+
         <div class="flex overflow-hidden" style="width: 700px">
           <div
             class="flex transition-transform duration-500 ease-in-out"
             [style.transform]="'translateX(-' + currentSlideLogo * 720 + 'px)'">
             <div
-              *ngFor="let logo of logoss"
               class="flex flex-wrap items-center justify-center gap-4 sm:gap-y-4 md:gap-4"
               style="min-width: 720px">
               <img
-                *ngFor="let img of logo"
+                *ngFor="let logo of logosList.images"
                 class="object-contain bg-white rounded-lg py-2 w-32 max-w-full sm:h-10 md:h-14 sm:w-44"
-                [src]="img.src"
-                [alt]="img.alt" />
+                [src]="logo.image" />
             </div>
           </div>
         </div>
@@ -127,17 +120,43 @@
           href="https://wa.me/5511980720119"
           target="_blank"
           title=""
-          class="inline-flex mt-4 items-center justify-center px-10 py-4 text-xl font-semibold text-white transition-all duration-200 bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+          class="pulse mt-4 sm:mt-0 justify-center w-full sm:w-80 px-6 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-xl transition-all duration-200 bg-green-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white hover:bg-gray-700"
           role="button">
           FALAR COM ENGENHEIRO
         </a>
       </div>
 
-      <div class="mgWebTop" style="">
-        <img
-          class="object-cover w-full h-full"
-          [src]="sectionMap?.images?.[0]?.image"
-          alt="Section Image" />
+      <div class="">
+        <div class="relative overflow-hidden">
+          <div class="relative mx-auto">
+            <div class="overflow-hidden">
+              <div
+                class="flex transition-transform duration-500 ease-in-out"
+                [ngStyle]="{
+                  transform: 'translateX(-' + currentSlide * 100 + '%)'
+                }">
+                <div
+                  *ngFor="let image of sectionMap.images"
+                  class="w-full flex-shrink-0">
+                  <img
+                    [src]="image.image"
+                    alt="Slide Image"
+                    class="w-full rounded-3xl" />
+                </div>
+              </div>
+            </div>
+            <button
+              (click)="prevSlide()"
+              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
+              ‹
+            </button>
+            <button
+              (click)="nextSlide()"
+              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
+              ›
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -207,9 +226,11 @@
                 [ngStyle]="{
                   transform: 'translateX(-' + currentSlide * 100 + '%)'
                 }">
-                <div *ngFor="let image of imgnr" class="w-full flex-shrink-0">
+                <div
+                  *ngFor="let image of sectionNr.images"
+                  class="w-full flex-shrink-0">
                   <img
-                    [src]="image"
+                    [src]="image.image"
                     alt="Slide Image"
                     class="w-full rounded-3xl" />
                 </div>
@@ -299,11 +320,17 @@
             [ngStyle]="{
               transform: 'translateX(-' + currentSlide * 100 + '%)'
             }">
-            <div *ngFor="let image of images" class="w-full flex-shrink-0">
-              <img [src]="image" alt="Slide Image" class="w-full rounded-3xl" />
+            <div
+              *ngFor="let image of sectionProjetos.images"
+              class="w-full flex-shrink-0">
+              <img
+                [src]="image.image"
+                alt="Slide Image"
+                class="w-full rounded-3xl" />
             </div>
           </div>
         </div>
+
         <button
           (click)="prevSlide()"
           class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
@@ -534,9 +561,11 @@
               [ngStyle]="{
                 transform: 'translateX(-' + currentSlide * 100 + '%)'
               }">
-              <div *ngFor="let image of projetos" class="w-full flex-shrink-0">
+              <div
+                *ngFor="let image of clima.images"
+                class="w-full flex-shrink-0">
                 <img
-                  [src]="image"
+                  [src]="image.image"
                   alt="Slide Image"
                   class="w-full rounded-3xl" />
               </div>
@@ -735,9 +764,9 @@
               transform: 'translateX(-' + currentSlide * 100 + '%)'
             }">
             <div
-              *ngFor="let image of imagesLaudos"
+              *ngFor="let image of sectionLaudos.images"
               class="w-full h-full flex-shrink-0">
-              <img [src]="image" alt="Slide Image" class="w-full" />
+              <img [src]="image.image" alt="Slide Image" class="w-full" />
             </div>
           </div>
         </div>
