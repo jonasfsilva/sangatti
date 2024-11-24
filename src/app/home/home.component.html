@@ -115,21 +115,12 @@
         <div class="mx-auto text-left md:max-w-lg lg:max-w-2xl md:text-left">
           <h2
             class="text-3xl font-bold leading-tight text-black sm:text-3xl lg:text-3xl lg:leading-tight">
-            A Sangatti eleva a eficiência e segurança.
+            {{ sectionMap?.title }}
           </h2>
         </div>
         <br />
         <p class="mt-4 text-lg text-gray-700">
-          Destacando-se como referência nacional em serviços de engenharia.
-          Nossa equipe de engenheiros altamente qualificados atua em todo o
-          Brasil, oferecendo soluções especializadas e projetos completos,
-          sempre em conformidade com as normas vigentes.
-          <br /><br />
-          Presente em mais de 7 estados, garantimos qualidade e eficiência,
-          sendo parceiros confiáveis para empresas nacionais e globais. Nossa
-          missão é entregar serviços de engenharia com qualidade,
-          responsabilidade e ética, assegurando a satisfação de nossos clientes
-          e da sociedade.
+          {{ sectionMap?.secondary_text }}
         </p>
         <br />
         <a
@@ -145,8 +136,8 @@
       <div class="mgWebTop" style="">
         <img
           class="object-cover w-full h-full"
-          src="../assets/images/mapa.png"
-          alt="" />
+          [src]="sectionMap?.images?.[0]?.image"
+          alt="Section Image" />
       </div>
     </div>
   </div>
@@ -157,7 +148,7 @@
     <div class="w-full lg:max-w-full lg:mx-0 grid sm:flex">
       <h2
         class="text-2xl w-full text-center sm:text-start font-semibold tracking-tight text-black sm:text-4xl lg:text-4xl">
-        Nossos serviços e soluções
+        {{ sectionData?.main_text }}
       </h2>
 
       <a
@@ -173,7 +164,8 @@
     <div
       class="grid grid-cols-1 gap-y-5 lg:grid-cols-4 lg:gap-x-4 mt-12 lg:mt-16">
       <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
+        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col"
+        *ngFor="let item of sectionData?.topics">
         <div
           class="inline-flex items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
           <svg
@@ -191,236 +183,11 @@
           </svg>
         </div>
         <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">Projetos Mecânicos</h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            6 anos de experiência em projetos e fabricação de máquinas e
-            produtos. Domínio de processos de fabricação.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex relative items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            fill="#000000"
-            width="30px"
-            height="30px"
-            viewBox="-274.15 0 1200 1200"
-            xmlns="http://www.w3.org/2000/svg"
-            class="cf-icon-svg">
-            <path
-              d="M30 161c-16.5 0-30 13.5-30 30v827.8c0 16.5 13.5 30 30 30h591.7c16.5 0 30-13.5 30-30V343.7L469 161H30zm389.6 60v134.8c0 19.9 16.3 36.2 36.2 36.2h135.9v596.8H60V221h359.6z" />
-            <path
-              d="M123.8 768.6h394.8v50H123.8zm0-124.6h394.8v50H123.8zm0-124.5h394.8v50H123.8z" />
-            <circle cx="194" cy="382.3" r="60" />
-          </svg>
-        </div>
-        <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">Adequação de NR12</h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            Realizamos inspeções rigorosas em vasos de pressão, tanques,
-            caldeiras e tubulações, incluindo redes de gás, garantindo a
-            integridade e segurança.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            fill="#000000"
-            width="30px"
-            height="30px"
-            viewBox="-274.15 0 1200 1200"
-            xmlns="http://www.w3.org/2000/svg"
-            class="cf-icon-svg">
-            <path
-              d="M30 161c-16.5 0-30 13.5-30 30v827.8c0 16.5 13.5 30 30 30h591.7c16.5 0 30-13.5 30-30V343.7L469 161H30zm389.6 60v134.8c0 19.9 16.3 36.2 36.2 36.2h135.9v596.8H60V221h359.6z" />
-            <path
-              d="M123.8 768.6h394.8v50H123.8zm0-124.6h394.8v50H123.8zm0-124.5h394.8v50H123.8z" />
-            <circle cx="194" cy="382.3" r="60" />
-          </svg>
-        </div>
-        <div class="mt-4">
           <h3 class="text-sm font-semibold text-black">
-            Inspeção conforme NR11
+            {{ item?.main_text }}
           </h3>
           <p class="mt-4 text-sm font-normal text-gray-700">
-            Inspecionamos equipamentos de movimentação de cargas e elaboramos
-            planos de rigging para garantir a segurança das operações.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            fill="#000000"
-            width="30px"
-            height="30px"
-            viewBox="-274.15 0 1200 1200"
-            xmlns="http://www.w3.org/2000/svg"
-            class="cf-icon-svg">
-            <path
-              d="M30 161c-16.5 0-30 13.5-30 30v827.8c0 16.5 13.5 30 30 30h591.7c16.5 0 30-13.5 30-30V343.7L469 161H30zm389.6 60v134.8c0 19.9 16.3 36.2 36.2 36.2h135.9v596.8H60V221h359.6z" />
-            <path
-              d="M123.8 768.6h394.8v50H123.8zm0-124.6h394.8v50H123.8zm0-124.5h394.8v50H123.8z" />
-            <circle cx="194" cy="382.3" r="60" />
-          </svg>
-        </div>
-        <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">Adequação de NR13</h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            Realizamos inspeções rigorosas em vasos de pressão, tanques,
-            caldeiras e tubulações, incluindo redes de gás, garantindo a
-            integridade e segurança.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex relative items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            width="30px"
-            height="30px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M13 6.82929C14.1652 6.41746 15 5.30622 15 4C15 2.34315 13.6568 1 12 1C10.3431 1 8.99999 2.34315 8.99999 4C8.99999 5.30622 9.8348 6.41746 11 6.82929V9H9.99999C9.44771 9 8.99999 9.44771 8.99999 10C8.99999 10.5523 9.44771 11 9.99999 11H11V20.9513C9.6854 20.8184 8.69059 20.4252 7.92969 19.9179C6.98043 19.2851 6.33511 18.4342 5.89442 17.5528C5.45178 16.6675 5.22547 15.7701 5.11139 15.0856C5.10656 15.0566 5.10194 15.0281 5.09752 15H5.99999C6.55228 15 6.99999 14.5523 6.99999 14C6.99999 13.4477 6.55228 13 5.99999 13H3.99999C3.37285 13 2.98297 13.5373 3.0025 14.1232C3.00953 14.3341 3.03602 14.7989 3.1386 15.4144C3.27451 16.2299 3.54821 17.3325 4.10557 18.4472C4.66488 19.5658 5.51956 20.7149 6.82029 21.5821C8.12729 22.4534 9.82501 23 12 23C14.175 23 15.8727 22.4534 17.1797 21.5821C18.4804 20.7149 19.3351 19.5658 19.8944 18.4472C20.4518 17.3325 20.7255 16.2299 20.8614 15.4144C20.964 14.7989 20.9905 14.3341 20.9975 14.1232C21.017 13.5373 20.6272 13 20 13H18C17.4477 13 17 13.4477 17 14C17 14.5523 17.4477 15 18 15H18.9025C18.898 15.0281 18.8934 15.0566 18.8886 15.0856C18.7745 15.7701 18.5482 16.6675 18.1056 17.5528C17.6649 18.4342 17.0196 19.2851 16.0703 19.9179C15.3094 20.4252 14.3146 20.8184 13 20.9513V11H14C14.5523 11 15 10.5523 15 10C15 9.44771 14.5523 9 14 9H13V6.82929ZM12 5.04921C11.4205 5.04921 10.9508 4.57946 10.9508 4C10.9508 3.42054 11.4205 2.95079 12 2.95079C12.5795 2.95079 13.0492 3.42054 13.0492 4C13.0492 4.57946 12.5795 5.04921 12 5.04921Z"
-              fill="#0F0F0F" />
-          </svg>
-        </div>
-        <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">
-            Linha de Vida e Sist. Ancoragem
-          </h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            Soluções especializadas em sistemas de linha de vida, proteção
-            contra quedas e pontos de ancoragem.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            fill="#0F0F0F"
-            height="30px"
-            width="30px"
-            version="1.1"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 512 512"
-            xml:space="preserve">
-            <g>
-              <g>
-                <path
-                  d="M494.86,367.136h-0.553V322.35c0-111.772-78.086-208.648-186.536-232.659c-0.576-5.779-3.05-11.155-7.161-15.41
-         c-4.941-5.114-11.578-7.931-18.69-7.931H230.08c-7.112,0-13.749,2.817-18.69,7.931c-4.11,4.255-6.585,9.631-7.161,15.41
-         C95.779,113.702,17.693,210.578,17.693,322.35v44.786H17.14c-9.452,0-17.14,7.689-17.14,17.14v11.278
-         c0,7.463,4.721,14.02,11.747,16.317C78.368,433.654,165.113,445.65,256,445.65s177.632-11.996,244.253-33.779
-         c7.026-2.297,11.747-8.854,11.747-16.317v-11.278C512,374.825,504.311,367.136,494.86,367.136z M223.32,85.806
-         c1.787-1.849,4.188-2.869,6.76-2.869h51.839c2.572,0,4.973,1.018,6.76,2.869c1.787,1.85,2.723,4.285,2.634,6.855l-7.626,221.166
-         c-0.176,5.09-4.302,9.077-9.394,9.077h-36.585c-5.092,0-9.218-3.987-9.394-9.076l-7.626-221.166
-         C220.598,90.09,221.533,87.656,223.32,85.806z M495.413,395.555c0,0.223-0.097,0.48-0.314,0.551
-         C430.097,417.358,345.183,429.063,256,429.063S81.903,417.358,16.902,396.104c-0.217-0.071-0.314-0.327-0.314-0.55v-11.278
-         c0-0.305,0.248-0.553,0.553-0.553H335.62c4.58,0,8.294-3.713,8.294-8.294c0-4.58-3.713-8.294-8.294-8.294H34.281V322.35
-         c0-83.355,46.677-157.8,117.156-195.572l17.996,125.979c0.592,4.137,4.139,7.122,8.201,7.122c0.39,0,0.785-0.028,1.183-0.084
-         c4.535-0.648,7.686-4.849,7.038-9.383l-18.75-131.258c11.941-5.228,24.463-9.437,37.467-12.521l7.165,207.768
-         c0.485,14.069,11.893,25.091,25.972,25.091h36.585c14.078,0,25.486-11.022,25.972-25.091l7.165-207.767
-         c13.003,3.085,25.526,7.294,37.467,12.521l-18.75,131.258c-0.647,4.535,2.504,8.735,7.038,9.383
-         c0.398,0.056,0.793,0.084,1.183,0.084c4.061,0,7.609-2.986,8.201-7.122l17.996-125.979
-         c70.479,37.771,117.156,112.215,117.156,195.571v44.786h-53.635c-4.58,0-8.294,3.713-8.294,8.294c0,4.58,3.713,8.294,8.294,8.294
-         h70.775c0.305,0,0.553,0.248,0.553,0.553V395.555z" />
-              </g>
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M388.701,367.136h-17.694c-4.58,0-8.294,3.713-8.294,8.294c0,4.58,3.713,8.294,8.294,8.294h17.694
-         c4.58,0,8.294-3.713,8.294-8.294C396.995,370.849,393.282,367.136,388.701,367.136z" />
-              </g>
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M193.439,303.484l-2.529-17.698c-0.648-4.535-4.846-7.686-9.383-7.038c-4.535,0.648-7.686,4.849-7.038,9.383l2.528,17.698
-         c0.592,4.137,4.139,7.122,8.201,7.122c0.39,0,0.785-0.028,1.183-0.084C190.936,312.219,194.087,308.018,193.439,303.484z" />
-              </g>
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M330.474,278.748c-4.535-0.649-8.735,2.504-9.383,7.038l-2.528,17.698c-0.647,4.535,2.504,8.735,7.038,9.383
-         c0.397,0.056,0.793,0.084,1.183,0.084c4.061,0,7.609-2.986,8.201-7.122l2.528-17.698
-         C338.159,283.597,335.008,279.396,330.474,278.748z" />
-              </g>
-            </g>
-          </svg>
-        </div>
-        <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">Laudos e Inspeções</h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            Máquinas e equipamentos, máquinas pesadas, estruturas metálicas,
-            sistemas de climatização e perícia técnica extrajudicial.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="relative flex flex-col items-start p-4 border rounded-lg bg-gray-50 lg:flex-col">
-        <div
-          class="inline-flex items-center justify-center w-10 h-10 text-gray-900 bg-gray-200 rounded-xl shrink-0">
-          <svg
-            fill="#000000"
-            width="30px"
-            height="30px"
-            viewBox="0 0 32 32"
-            id="icon"
-            xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <style>
-                .cls-1 {
-                  fill: none;
-                }
-              </style>
-            </defs>
-            <path
-              d="M29.3379,17.9336l-7.7324-2.7783L18.374,11.0967A2.99,2.99,0,0,0,16.0537,10H8.0576a2.9982,2.9982,0,0,0-2.48,1.3115L2.8662,15.2949A4.9884,4.9884,0,0,0,2,18.1074V26a1,1,0,0,0,1,1H5.1421a3.9806,3.9806,0,0,0,7.7158,0h6.2842a3.9806,3.9806,0,0,0,7.7158,0H29a1,1,0,0,0,1-1V18.875A1,1,0,0,0,29.3379,17.9336ZM9,28a2,2,0,1,1,2-2A2.0027,2.0027,0,0,1,9,28Zm14,0a2,2,0,1,1,2-2A2.0025,2.0025,0,0,1,23,28Zm5-3H26.8579a3.9806,3.9806,0,0,0-7.7158,0H12.8579a3.9806,3.9806,0,0,0-7.7158,0H4V18.1074A2.9977,2.9977,0,0,1,4.52,16.4189l2.711-3.9814A.9992.9992,0,0,1,8.0576,12h7.9961a.9928.9928,0,0,1,.7647.3545l3.3994,4.2685a1.0007,1.0007,0,0,0,.4443.3184L28,19.5781Z"
-              transform="translate(0 0)" />
-            <rect x="28" y="2" width="2" height="7" />
-            <rect x="24" y="6" width="2" height="3" />
-            <rect x="20" y="4" width="2" height="5" />
-            <rect
-              id="_Transparent_Rectangle_"
-              data-name="&lt;Transparent Rectangle&gt;"
-              class="cls-1"
-              width="32"
-              height="32" />
-          </svg>
-        </div>
-        <div class="mt-4">
-          <h3 class="text-sm font-semibold text-black">
-            Reclassificação de Monta Veicular
-          </h3>
-          <p class="mt-4 text-sm font-normal text-gray-700">
-            Veículos sinistrados podem ser reclassificados com o Laudo de
-            Recuperabilidade emitido por Engenheiro Mecânico, conforme a
-            Resolução 810/20 do CONTRAN. Recupere o valor do seu veículo.
+            {{ item?.secondary_text }}
           </p>
         </div>
       </div>
@@ -471,20 +238,16 @@
             width="60"
             style="margin-top: -10px"
             class="mr-3" />
-          Adequação de NR12
+          {{ sectionNr?.main_text }}
         </h2>
 
         <p class="mt-8 text-sm font-normal text-white">
-          Na Sangatti, nos destacamos na prestação de serviços de adequação à
-          Norma Regulamentadora NR12. Nosso corpo técnico é altamente capacitado
-          e legalmente habilitado, garantindo que sua empresa esteja sempre em
-          conformidade. Com uma abordagem abrangente, oferecemos uma solução
-          completa que inclui:
+          {{ sectionNr?.secondary_text }}
         </p>
 
         <ul
           class="grid font-sans text-sm grid-cols-1 mb-10 mt-8 sm:grid-cols-2 text-white sm:mt-4 gap-x-4 gap-y-4 sm:gap-y-4">
-          <div class="rounded-lg">
+          <div class="rounded-lg" *ngFor="let item of sectionNr?.topics">
             <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
               <svg
                 class="w-6 h-6 text-gray-950 mr-2 shrink-0"
@@ -498,134 +261,7 @@
                   stroke-linejoin="round"
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Notificação junto ao Ministério do Trabalho
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Realização da Análise Preliminar de Riscos (APR).
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Oferta de treinamentos especializados.
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Atendimento a notificações de órgãos fiscalizadores.
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Elaboração e atualização de manuais pertinentes ao processo.
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Emissão de laudo de conformidade à NR12.
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Execução da fabricação e montagem conforme as normas
-              estabelecidas.
-            </h3>
-          </div>
-
-          <div class="rounded-lg">
-            <h3 class="text-sm flex bg-white rounded-md p-3 text-gray-950">
-              <svg
-                class="w-6 h-6 text-gray-950 mr-2 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Desenvolvimento de Projetos Mecânicos e Elétricos.
+              {{ item?.main_text }}
             </h3>
           </div>
         </ul>
@@ -684,21 +320,18 @@
       <div class="col-span-7">
         <h2
           class="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-4xl font-pj">
-          Projetos Mecânicos
+          {{ sectionProjetos?.title }}
         </h2>
         <p class="mt-4 text-sm leading-6 text-gray-900 sm:mt-8 font-pj">
-          Com 6 anos de experiência, desenvolvemos soluções de engenharia para
-          indústrias de diversos segmentos: alimentício, mineração,
-          metalmecânica, frigoríficos, papel e celulose, moveleiro, atacadista,
-          usinagem e construção civil. Nossa expertise inclui domínio em
-          processos de fabricação, detalhamento preciso e eficiência em cada
-          projeto.
+          {{ sectionProjetos?.secondary_text }}
         </p>
 
-        <ul class="mt-5 space-y-3 sm:mt-10">
+        <ul class="mt-5 space-y-2 sm:mt-10">
           <div
-            class="grid grid-cols-1 mt-8 sm:grid-cols-3 md:mt-16 xl:mt-10 gap-x-3 gap-y-4">
-            <div class="flex items-start bg-white rounded-md py-3 px-3">
+            class="grid grid-cols-1 mt-8 sm:grid-cols-2 md:mt-16 xl:mt-10 gap-x-2 gap-y-2">
+            <div
+              class="flex items-start bg-white rounded-md py-3 px-3"
+              *ngFor="let item of sectionProjetos?.topics">
               <svg
                 class="w-6 h-6 text-gray-700 shrink-0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -711,56 +344,12 @@
                   stroke-linejoin="round"
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <h3 class="ml-3 text-sm font-medium text-gray-900">
-                <span class="font-bold w-full text-sm text-gray-900"
-                  >Máquinas e Equipamentos</span
+              <h3 class="ml-3 text-xs font-medium text-gray-900">
+                <span class="font-bold w-full text-sm text-gray-900">{{
+                  item?.main_text
+                }}</span
                 ><br />
-                Projeto, desenvolvimento e fabricação de máquinas sob medidas
-                com necessidades especiais.
-              </h3>
-            </div>
-
-            <div class="flex items-start bg-white rounded-md py-3 px-3">
-              <svg
-                class="w-6 h-6 text-gray-700 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h3 class="ml-3 text-sm font-medium text-gray-900">
-                <span class="font-bold w-full text-sm text-gray-900"
-                  >Estruturas metálicas</span
-                ><br />
-                Projeto estrutural de coberturas, galpões, mezaninos e
-                estruturas metálicas especiais.
-              </h3>
-            </div>
-
-            <div class="flex items-start bg-white rounded-md py-3 px-3">
-              <svg
-                class="w-6 h-6 text-gray-700 shrink-0"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h3 class="ml-3 text-sm font-medium text-gray-900">
-                <span class="font-bold w-full text-sm text-gray-900"
-                  >Perícias Técnicas Extrajudicias<br
-                /></span>
-                Perícias em máquinas, equipamentos, veículos pesados, auditorias
-                de apontamento de execução e entre outros.
+                {{ item?.secondary_text }}
               </h3>
             </div>
           </div>
@@ -894,18 +483,16 @@
         <div class="max-w-lg lg:max-w-none">
           <h2
             class="mt-6 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            Projeto de climatização
+            {{ clima.title }}
           </h2>
           <p class="text-base mb-3 mt-3 font-semibold text-gray-700">
-            Nossa equipe de especialistas, com vasta experiência de mercado,
-            entrega soluções inovadoras de climatização (HVAC) e exaustão,
-            garantindo conforto e eficiência máxima para seus projetos.
+            {{ clima.secondary_text }}
           </p>
         </div>
 
         <div
           class="grid grid-cols-1 mt-4 sm:grid-cols-1 md:mt-1 xl:mt-1 gap-x6 gap-y-8">
-          <div class="flex items-start">
+          <div class="flex items-start" *ngFor="let item of clima.topics">
             <svg
               class="w-6 h-6 text-gray-600 shrink-0"
               xmlns="http://www.w3.org/2000/svg"
@@ -919,39 +506,11 @@
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h3 class="ml-3 text-sm font-medium text-gray-900">
-              <b>Análise Inicial</b><br />
+              <b>{{ item.main_text }}</b
+              ><br />
               <span class="font-regular text-sm">
-                • Levantamento da área a ser climatizada;<br />
-                • Definição das cargas térmicas;<br />
-                • Proposta das tubulações e equipamentos e suas
-                localizações.</span
+                {{ item.secondary_text }}</span
               >
-            </h3>
-          </div>
-
-          <div class="flex items-start">
-            <svg
-              class="w-6 h-6 text-gray-600 shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 class="ml-3 text-sm font-medium text-gray-900">
-              <b>Entrega Técnica</b><br />
-              <span class="font-regular text-sm">
-                • Cálculo das cargas térmicas;<br />
-                • Material Descritivo com todas as especificações;<br />
-                • Projeto em 3D em BIM (.rvt);<br />
-                • Detalhamento dos equipamentos, dutos, tubulação, cabeamento,
-                painéis e quadros elétricos;<br />
-                • Anotação de Responsabilidade Técnica (A.R.T.).
-              </span>
             </h3>
           </div>
         </div>
@@ -1010,18 +569,18 @@
           </p>
           <h2
             class="mt-6 text-3xl font-semibold tracking-tight text-gray-900 lg:mt-8 sm:text-4xl lg:text-5xl">
-            Linha de vida rígida e flexível
+            {{ sectionLinha?.main_text }}
           </h2>
         </div>
         <span class="text-base mt-6 font-regular text-gray-600 w-10/12">
-          Fornecemos soluções especializadas em sistemas de proteção contra
-          quedas, cobrindo uma ampla variedade de linhas de vida para assegurar
-          a máxima segurança.
+          {{ sectionLinha?.secondary_text }}
         </span>
 
         <div
           class="grid grid-cols-1 mt-8 sm:grid-cols-3 md:mt-16 xl:mt-10 gap-x-3 gap-y-4">
-          <div class="flex items-start bg-white rounded-md py-3 px-3">
+          <div
+            class="flex items-start bg-white rounded-md py-3 px-3"
+            *ngFor="let item of sectionLinha.topics | slice : 0 : 3">
             <svg
               class="w-6 h-6 text-gray-700 shrink-0"
               xmlns="http://www.w3.org/2000/svg"
@@ -1035,56 +594,11 @@
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h3 class="ml-3 text-sm font-medium text-gray-900">
-              <span class="font-bold w-full text-sm text-gray-900"
-                >Vertical</span
+              <span class="font-bold w-full text-sm text-gray-900">{{
+                item?.main_text
+              }}</span
               ><br />
-              Projetada para escadas verticais, garantindo segurança em todas as
-              subidas e descidas.
-            </h3>
-          </div>
-
-          <div class="flex items-start bg-white rounded-md py-3 px-3">
-            <svg
-              class="w-6 h-6 text-gray-700 shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 class="ml-3 text-sm font-medium text-gray-900">
-              <span class="font-bold w-full text-sm text-gray-900"
-                >Horizontal</span
-              ><br />
-              Sistema composta por cabo de aço, ideal para telhados, garantindo
-              segurança e liberdade de movimento.
-            </h3>
-          </div>
-
-          <div class="flex items-start bg-white rounded-md py-3 px-3">
-            <svg
-              class="w-6 h-6 text-gray-700 shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 class="ml-3 text-sm font-medium text-gray-900">
-              <span class="font-bold w-full text-sm text-gray-900"
-                >Fixa<br
-              /></span>
-              Nossa estrutura metálica robusta é especialmente desenvolvida para
-              operações de carga e descarga de caminhões, assegurando um
-              ambiente de trabalho seguro e eficiente.
+              {{ item?.secondary_text }}
             </h3>
           </div>
         </div>
@@ -1140,7 +654,9 @@
 
         <div
           class="grid w-full grid-cols-1 gap-y-4 sm:gap-y-10 lg:grid-cols-2 xl:grid-cols-4 lg:gap-x-2 mt-12 lg:mt-10">
-          <div class="bg-white p-3 grid rounded-lg">
+          <div
+            class="bg-white p-3 grid rounded-lg"
+            *ngFor="let item of sectionLinha.topics | slice : 3">
             <h3 class="text-sm grid text-black">
               <div class="flex">
                 <svg
@@ -1155,115 +671,9 @@
                     stroke-linejoin="round"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <b>Análise e Inspeção Detalhadas:</b>
+                <b>{{ item?.main_text }}</b>
               </div>
-              Realizamos uma análise e inspeção detalhadas do local de
-              instalação para garantir a adequação e segurança do sistema.
-            </h3>
-          </div>
-          <div class="bg-white p-3 rounded-lg">
-            <h3 class="text-sm grid text-black">
-              <div class="flex">
-                <svg
-                  class="w-6 h-6 text-gray-300 mr-3 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <b>Projeto e Memorial de Cálculo:</b>
-              </div>
-              Elaboramos projetos e memoriais de cálculo abrangendo todo o
-              sistema, assegurando uma solução completa e eficiente.
-            </h3>
-          </div>
-          <div class="bg-white p-3 rounded-lg">
-            <h3 class="text-sm grid text-black">
-              <div class="flex">
-                <svg
-                  class="w-6 h-6 text-gray-300 mr-3 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <b>Manuais de Instalação: </b>
-              </div>
-              Criamos manuais de instalação e recomendações técnicas,
-              facilitando o entendimento e a implementação correta do sistema.
-            </h3>
-          </div>
-          <div class="bg-white p-3 rounded-lg">
-            <h3 class="text-sm grid text-black">
-              <div class="flex">
-                <svg
-                  class="w-6 h-6 text-gray-300 mr-3 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <b>Catálogo Comercial: </b>
-              </div>
-              Desenvolvemos catálogos para facilitar a comercialização do
-              sistema, destacando suas características e benefícios.
-            </h3>
-          </div>
-          <div class="bg-white p-3 rounded-lg">
-            <h3 class="text-sm grid text-black">
-              <div class="flex">
-                <svg
-                  class="w-6 h-6 text-gray-300 mr-3 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <b> Fabricação e Montagem In Loco: </b>
-              </div>
-              Cuidamos da fabricação, fornecimento de materiais e montagem no
-              local, garantindo qualidade e precisão em cada etapa.
-            </h3>
-          </div>
-          <div class="bg-white p-3 rounded-lg">
-            <h3 class="text-sm grid text-black">
-              <div class="flex">
-                <svg
-                  class="w-6 h-6 text-gray-300 mr-3 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <b> Inspeção e Laudo Técnico:</b>
-              </div>
-              Realizamos inspeções e emitimos laudos técnicos para linhas de
-              vida já instaladas, assegurando conformidade e segurança contínua.
+              {{ item?.secondary_text }}
             </h3>
           </div>
         </div>
@@ -1276,13 +686,10 @@
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="text-center">
       <h1 class="text-4xl font-bold sm:text-5xl lg:text-4xl">
-        Projeto e Instalação de Pontos de Ancoragem
+        {{ sectionInstalacao?.main_text }}
       </h1>
       <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xs text-gray-800">
-        Os Pontos de Ancoragem, cruciais para o acesso por corda em atividades
-        como limpeza de fachadas e manutenções em condomínios, recebem atenção
-        especial. Oferecemos um serviço completo para garantir a segurança e
-        eficiência em operações em altura.
+        {{ sectionInstalacao?.secondary_text }}
       </p>
     </div>
   </div>
@@ -1292,7 +699,9 @@
   <div class="px-4 mx-auto sm:px-6 lg:px-4 max-w-7xl">
     <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-20 lg:gap-x-16">
-        <div class="relative flex flex-row items-start lg:flex-col">
+        <div
+          class="relative flex flex-row items-start lg:flex-col"
+          *ngFor="let item of sectionInstalacao?.topics">
           <span
             class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
             aria-hidden="true"></span>
@@ -1302,72 +711,11 @@
             01
           </div>
           <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">Análise inicial</h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Iniciamos com uma análise detalhada das instalações, identificando
-              os pontos de ancoragem ideais para garantir segurança e
-              eficiência, considerando a atividade específica.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-white relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            02
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
             <h3 class="text-sm font-semibold text-gray-900">
-              Análise de Risco
+              {{ item?.main_text }}
             </h3>
             <p class="mt-4 text-sm font-normal text-gray-700">
-              Conduzimos uma minuciosa avaliação de riscos nos pontos de
-              ancoragem, garantindo que cada projeto e instalação esteja em
-              conformidade com as normativas de segurança.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-white relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            03
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">Projetos</h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Nossa equipe desenvolve projetos personalizados, considerando as
-              características específicas do local, assegurando a eficácia e a
-              segurança do sistema de ancoragem.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-white relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            04
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">
-              Instalação e Fornecimento de Material
-            </h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Realizamos a instalação dos pontos de ancoragem, utilizando
-              materiais certificados e testados em laboratório, garantindo a
-              máxima confiabilidade e resistência.
+              {{ item?.secondary_text }}
             </p>
           </div>
         </div>
@@ -1410,14 +758,11 @@
       <div class="md:mr-auto md:w-1/2 md:pr-10">
         <h2
           class="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-4xl">
-          Laudos e Inspeções Técnicas de Engenharia
+          {{ sectionLaudos?.main_text }}
         </h2>
         <p
           class="mt-4 text-sm font-normal leading-4 text-white lg:text-sm lg:mt-6 lg:leading-7">
-          A Sangatti é referência em inspeções técnicas, contando com uma equipe
-          multidisciplinar altamente qualificada. Proporcionamos serviços
-          especializados em diversas áreas, assegurando segurança e eficiência
-          em todos os projetos de engenharia.
+          {{ sectionLaudos?.secondary_text }}
         </p>
       </div>
     </div>
@@ -1426,7 +771,9 @@
   <div class="py-12 bg-gray-100 sm:py-16 lg:py-20 xl:py-10">
     <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-20 lg:gap-x-16">
-        <div class="relative flex flex-row items-start lg:flex-col">
+        <div
+          class="relative flex flex-row items-start lg:flex-col"
+          *ngFor="let item of sectionLaudos?.topics">
           <span
             class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
             aria-hidden="true"></span>
@@ -1437,74 +784,10 @@
           </div>
           <div class="ml-6 lg:ml-0 lg:mt-8">
             <h3 class="text-sm font-semibold text-gray-900">
-              Máquinas e Equipamentos
+              {{ item?.main_text }}
             </h3>
             <p class="mt-4 text-sm font-normal text-gray-700">
-              Executamos inspeções rigorosas em máquinas industriais,
-              assegurando funcionamento seguro e eficiente em conformidade com
-              as normas vigentes.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[36px] ring-gray-100 relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            02
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">
-              Estruturas Metálicas
-            </h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Verificamos minuciosamente a integridade e documentação das
-              estruturas metálicas, garantindo aderência aos padrões de
-              segurança.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[36px] ring-gray-100 relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            03
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">
-              Sistemas de Climatização
-            </h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Otimizamos sistemas de climatização através de avaliações
-              detalhadas, assegurando ambientes confortáveis e bem regulados.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative flex flex-row items-start lg:flex-col">
-          <span
-            class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-            aria-hidden="true"></span>
-
-          <div
-            class="inline-flex items-center justify-center ring-[20px] lg:ring-[36px] ring-gray-100 relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            04
-          </div>
-          <div class="ml-6 lg:ml-0 lg:mt-8">
-            <h3 class="text-sm font-semibold text-gray-900">
-              Perícias Técnicas Extrajudiciais
-            </h3>
-            <p class="mt-4 text-sm font-normal text-gray-700">
-              Especializados em perícias técnicas extrajudiciais, oferecemos
-              análises detalhadas e imparciais, apoiando a resolução de diversos
-              problemas e situações de engenharia.
+              {{ item?.secondary_text }}
             </p>
           </div>
         </div>
@@ -1530,42 +813,49 @@
         A satisfação do cliente é o nosso compromisso
       </h2>
     </div>
-    <div class="testimonial-carousel flex flex-col items-center">
+    <div
+      *ngIf="listTestemunhas?.length > 0"
+      class="testimonial-carousel flex flex-col items-center">
+      <!-- Current Testimonial -->
       <div
         class="testimonial-card p-6 mt-4 max-w-md mx-auto bg-white rounded-xl flex items-center space-x-4">
         <div class="flex-shrink-0">
           <img
             class="h-12 w-12 rounded-full"
-            [src]="testimonials[currentTestimonialIndex].image"
-            [alt]="testimonials[currentTestimonialIndex].name" />
+            [src]="listTestemunhas[currentTestimonialIndex]?.image"
+            [alt]="listTestemunhas[currentTestimonialIndex]?.name" />
         </div>
         <div>
           <div class="text-xl font-medium text-black">
-            {{ testimonials[currentTestimonialIndex].name }}
+            {{ listTestemunhas[currentTestimonialIndex]?.name }}
           </div>
-          <p class="text-gray-500">
-            {{ testimonials[currentTestimonialIndex].title }}
-          </p>
         </div>
       </div>
       <p class="mt-4 text-center text-gray-600 min-h-20">
-        {{ testimonials[currentTestimonialIndex].text }}
+        {{ listTestemunhas[currentTestimonialIndex]?.text }}
       </p>
+
+      <!-- Navigation -->
       <div class="flex justify-between mt-6 w-full max-w-md">
+        <!-- Previous Button -->
         <button
           class="text-gray-600 hover:text-gray-900"
           (click)="prevTestimonial()">
           ←
         </button>
+
+        <!-- Dots Indicator -->
         <div class="flex space-x-2">
           <span
-            *ngFor="let testimonial of testimonials; let i = index"
+            *ngFor="let testimonial of listTestemunhas; let i = index"
             class="h-2 w-2 rounded-full"
             [ngClass]="{
               'bg-gray-600': i === currentTestimonialIndex,
               'bg-gray-300': i !== currentTestimonialIndex
             }"></span>
         </div>
+
+        <!-- Next Button -->
         <button
           class="text-gray-600 hover:text-gray-900"
           (click)="nextTestimonial()">

@@ -1,5 +1,17 @@
 import { Component, HostListener } from "@angular/core";
+import { SectionService } from "../services/services.service";
+interface SectionLinha {
+  main_text: string; // Required property
+  secondary_text: string;
+  topics: Topic[];
+}
 
+interface Topic {
+  id: number;
+  main_text: string;
+  secondary_text: string;
+  order: number;
+}
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -8,8 +20,14 @@ import { Component, HostListener } from "@angular/core";
 export class HomeComponent {
   title = "engenharia";
   isMobile: boolean = false;
+  sectionData: any;
+  sectionProjetos: any;
+  sectionNr: any;
   expanded = false;
   currentSlideLogo = 0;
+  sectionMap: any;
+  listTestemunhas: any;
+  constructor(private sectionService: SectionService) {}
   logos = [
     {
       src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/waverio.svg",
@@ -47,12 +65,57 @@ export class HomeComponent {
 
   currentIndex = 0;
   visibleLogos = this.logos.slice(0, 4);
-
+  sectionLaudos: any;
   currentIndexComenter = 0;
+  clima: any;
   ngOnInit() {
     this.autoScroll();
     this.checkScreenSize();
     this.startAutoScroll();
+    this.fetchSectionData();
+    this.fetchProjetos();
+    this.fetchNr();
+    this.fetchMap();
+    this.fetchLinha();
+    this.fetchInstalacao();
+    this.fetchLaudos();
+    this.testemunhas();
+    this.listClima();
+  }
+  listClima() {
+    this.sectionService.getClima().subscribe(
+      (data) => {
+        this.clima = data;
+        console.log("Section Data:", data);
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  testemunhas() {
+    this.sectionService.getTestemunhas().subscribe(
+      (data) => {
+        this.listTestemunhas = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+
+  prevTestimonial() {
+    this.currentTestimonialIndex =
+      this.currentTestimonialIndex > 0
+        ? this.currentTestimonialIndex - 1
+        : this.listTestemunhas.length - 1;
+  }
+
+  nextTestimonial() {
+    this.currentTestimonialIndex =
+      this.currentTestimonialIndex < this.listTestemunhas.length - 1
+        ? this.currentTestimonialIndex + 1
+        : 0;
   }
 
   autoScroll() {
@@ -203,7 +266,12 @@ export class HomeComponent {
       },
     ],
   ];
-
+  sectionLinha: SectionLinha = {
+    main_text: "", // Provide a default empty string for main_text
+    secondary_text: "",
+    topics: [],
+  };
+  sectionInstalacao: any;
   currentSlide = 0;
 
   prevSlide() {
@@ -289,48 +357,7 @@ export class HomeComponent {
     this.currentSlideLogo = (this.currentSlideLogo + 1) % this.logoss.length;
   }
   currentTestimonialIndex: number = 0;
-  testimonials: any[] = [
-    {
-      text: "Uma empresa que personifica os valores e o profissionalismo essenciais para o mercado.",
-      name: "Maurício Souza",
-      title: "Engenheiro",
-      image:
-        "https://lx.eng.br/wp-content/uploads/elementor/thumbs/engineer-technician-controlling-robotic-arms-on-co-2023-03-07-18-45-28-utc-1-qakqdv6iib1dizv8mnj5119oghstunphbdktpoytr4.jpg",
-    },
-    {
-      name: "Marcos Peres",
-      title: "Gavi Engenharia",
-      image: "assets/images/logo5.webp",
-      text: "Pessoal, quero destacar a importância deste trabalho e expressar minha profunda gratidão! No mês passado, realizei um projeto com o talentoso Lucas Xavier, e foi uma verdadeira aula para mim. ",
-    },
-    {
-      name: "Ricardo Resmini",
-      title: "RC Logística",
-      image:
-        "https://lx.eng.br/wp-content/uploads/elementor/thumbs/engineer-technician-controlling-robotic-arms-on-co-2023-03-07-18-45-28-utc-1-qakqdv6iib1dizv8mnj5119oghstunphbdktpoytr4.jpg",
-      text: 'Hoje quero deixar aqui meu agradecimento ao Lucas Xavier que me ajudou muito em um projeto no Solidworks, resolveu vários problemas no modelo que eu fiz e ainda me deu uma baita aula sobre o assunto. O cara entende do assunto"',
-    },
-    {
-      name: "João Batista",
-      image: "assets/images/logo14.jpg",
-      title: "Jopira Soluções IND.",
-      text: "Fiz um projeto estrutural com o Lucas Xavier, e não podia esperar melhores resultados. Qualidade, economia e tempo de projeto. O Lucas me guiou passo a passo na fabricação e conseguimos reduzir nosso cronograma em semanas.",
-    },
-  ];
 
-  prevTestimonial() {
-    this.currentTestimonialIndex =
-      this.currentTestimonialIndex > 0
-        ? this.currentTestimonialIndex - 1
-        : this.testimonials.length - 1;
-  }
-
-  nextTestimonial() {
-    this.currentTestimonialIndex =
-      this.currentTestimonialIndex < this.testimonials.length - 1
-        ? this.currentTestimonialIndex + 1
-        : 0;
-  }
   @HostListener("window:resize", ["$event"])
   onResize(event: any) {
     this.checkScreenSize();
@@ -338,5 +365,76 @@ export class HomeComponent {
 
   checkScreenSize() {
     this.isMobile = window.innerWidth < 768; // Define mobile breakpoint
+  }
+
+  fetchSectionData() {
+    this.sectionService.getSectionData().subscribe(
+      (data) => {
+        this.sectionData = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchProjetos() {
+    this.sectionService.getSectionData().subscribe(
+      (data) => {
+        this.sectionProjetos = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchNr() {
+    this.sectionService.getSectionNr().subscribe(
+      (data) => {
+        this.sectionNr = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchMap() {
+    this.sectionService.getMap().subscribe(
+      (data) => {
+        this.sectionMap = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchLinha() {
+    this.sectionService.getLinha().subscribe(
+      (data) => {
+        this.sectionLinha = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchInstalacao() {
+    this.sectionService.getInstalacao().subscribe(
+      (data) => {
+        this.sectionInstalacao = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
+  }
+  fetchLaudos() {
+    this.sectionService.getLaudos().subscribe(
+      (data) => {
+        this.sectionLaudos = data;
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
   }
 }

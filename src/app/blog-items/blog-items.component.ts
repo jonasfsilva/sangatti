@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { NewsService } from "./posts.service";
+import { SectionService } from "../services/services.service";
 
 @Component({
   selector: "app-blog-items",
@@ -9,10 +10,14 @@ import { NewsService } from "./posts.service";
 })
 export class BlogItemsComponent {
   posts: any;
-  constructor(private router: Router, private newsService: NewsService) {}
+  constructor(
+    private router: Router,
+    private newsService: NewsService,
+    private sectionService: SectionService
+  ) {}
 
   ngOnInit() {
-    this.newsService.getPosts().subscribe(
+    this.sectionService.getPost().subscribe(
       (response) => {
         this.posts = response.slice(0, 4);
       },
