@@ -1,5 +1,7 @@
 import { Component, HostListener } from "@angular/core";
 import { SectionService } from "../services/services.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
 interface SectionLinha {
   main_text: string; // Required property
   secondary_text: string;
@@ -24,10 +26,24 @@ export class HomeComponent {
   sectionProjetos: any;
   sectionNr: any;
   expanded = false;
+  contactForm: FormGroup;
   currentSlideLogo = 0;
   sectionMap: any;
   listTestemunhas: any;
-  constructor(private sectionService: SectionService) {}
+
+  constructor(
+    private fb: FormBuilder,
+    private sectionService: SectionService,
+    private http: HttpClient
+  ) {
+    this.contactForm = this.fb.group({
+      name: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      phone: ["", Validators.required],
+      company: [""],
+      text: ["", Validators.required],
+    });
+  }
   logos = [
     {
       src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/waverio.svg",
@@ -436,5 +452,31 @@ export class HomeComponent {
         console.error("Error fetching section data:", error);
       }
     );
+  }
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      console.log("Form Data:", this.contactForm.value); // Log the form data
+      this.http
+        .post(
+          "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/contacts/",
+          this.contactForm.value
+        )
+        .subscribe(
+          (response) => {
+            console.log("Message sent successfully:", response);
+            alert("Mensagem enviada com sucesso!");
+            this.contactForm.reset();
+          },
+          (error) => {
+            console.error("Error sending message:", error);
+            alert(
+              "Erro ao enviar mensagem. Verifique os dados e tente novamente."
+            );
+          }
+        );
+    } else {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+    }
   }
 }
