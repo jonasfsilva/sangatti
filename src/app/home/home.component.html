@@ -19,6 +19,7 @@
 </section>
 
 <section
+  *ngIf="logosList.active === true"
   class="relative py-6 overflow-hidden bg-black sm:py-16 lg:py-10 xl:py-12">
   <div class="absolute top-0 left-0 -translate-x-2/3 -translate-y-[75%]">
     <div
@@ -64,8 +65,13 @@
     </div>
   </div>
 </section>
+
 <app-blog-items></app-blog-items>
-<section id="sobre" class="pb-10 sm:mt-0 mt-10 bg-white">
+
+<section
+  id="sobre"
+  *ngIf="sectionMap.active === true"
+  class="pb-10 sm:mt-0 mt-10 bg-white">
   <div class="max-w-7xl px-4 mx-auto sm:px-2 lg:px-2">
     <div class="grid grid-cols-1 mt-2 md:mt-20 gap-y-4 md:grid-cols-2 gap-x-2">
       <div>
@@ -374,6 +380,7 @@
     </div>
   </section>
 </section>
+
 <section class="py-12 bg-white sm:py-16 lg:py-20 xl:py-14">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-8 lg:gap-x-6 xl:gap-x-6 gap-y-6">
@@ -572,7 +579,9 @@
   </section>
 </section>
 
-<section class="py-12 sm:py-16 lg:py-10">
+<section
+  *ngIf="sectionInstalacao.active === true"
+  class="py-12 sm:py-16 lg:py-10">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="text-center">
       <h1 class="text-xl font-bold sm:text-5xl lg:text-4xl">
@@ -585,7 +594,9 @@
   </div>
 </section>
 
-<section class="py-12 mb-10 sm:py-10 lg:py-4 bg-white">
+<section
+  *ngIf="sectionInstalacao.active === true"
+  class="py-12 mb-10 sm:py-10 lg:py-4 bg-white">
   <div class="px-4 mx-auto sm:px-6 lg:px-4 max-w-7xl">
     <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-20 lg:gap-x-16">
@@ -614,7 +625,7 @@
   </div>
 </section>
 
-<section id="laudos">
+<section id="laudos" *ngIf="sectionLaudos.active === true">
   <div class="relative bg-gray-800">
     <div class="h-56 sm:h-72 md:absolute md:right-0 md:h-full md:w-1/2">
       <div class="h-full w-full mr-0 max-w-3xl mx-auto relative">
@@ -683,7 +694,9 @@
   </div>
 </section>
 
-<section class="py-12 bg-white sm:py-16 lg:py-10 xl:py-10 mb-12">
+<section
+  *ngIf="listTestemunhas.active === true"
+  class="py-12 bg-white sm:py-16 lg:py-10 xl:py-10 mb-12">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="max-w-2xl mx-auto text-center">
       <h2
@@ -743,6 +756,7 @@
     </div>
   </div>
 </section>
+
 <section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="max-w-2xl mx-auto text-center">
