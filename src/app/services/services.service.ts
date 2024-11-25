@@ -6,6 +6,9 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class SectionService {
+  private apiBanner =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/";
+
   private apiUrl =
     "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/nossos-servicos-e-solucoes";
   private apiProjetos =
@@ -75,5 +78,8 @@ export class SectionService {
   }
   getAbout() {
     return this.http.get<any>(this.apiAbout);
+  }
+  getBanners() {
+    return this.http.get<any>(this.apiBanner);
   }
 }

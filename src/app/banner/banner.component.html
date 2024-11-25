@@ -1,0 +1,25 @@
+<div class="carousel-container">
+  <div
+    class="carousel-slide"
+    [style.transform]="'translateX(' + -currentIndex * 100 + '%)'">
+    <ng-container *ngFor="let banner of banners">
+      <img
+        *ngIf="!isMobile"
+        [src]="banner.image"
+        alt="Desktop Slide Image"
+        class="carousel-image"
+        (click)="openLink(banner.link)" />
+
+      <!-- Imagem para mobile -->
+      <img
+        *ngIf="isMobile"
+        [src]="banner.image_mobile"
+        alt="Mobile Slide Image"
+        class="carousel-image"
+        (click)="openLink(banner.link)" />
+    </ng-container>
+  </div>
+
+  <button class="carousel-control prev" (click)="prevSlide()">&#10094;</button>
+  <button class="carousel-control next" (click)="nextSlide()">&#10095;</button>
+</div>
