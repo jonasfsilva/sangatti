@@ -26,9 +26,13 @@ export class SectionService {
   private apiClima =
     "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/projeto-de-climatizacao";
   private apiPost =
-    "https://octopus-app-yiik3.ondigitalocean.app/api/v1/leads/";
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/posts/";
   private apiLogos =
     "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/atendemos-empresas-nacionais-e-multinacionais-em-todo-o-brasil";
+  private apiMenu =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/menu-items/";
+  private apiAbout =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/sobre-nos";
 
   constructor(private http: HttpClient) {}
 
@@ -65,5 +69,11 @@ export class SectionService {
   }
   getLogos() {
     return this.http.get<any>(this.apiLogos);
+  }
+  getMenu() {
+    return this.http.get<any>(this.apiMenu);
+  }
+  getAbout() {
+    return this.http.get<any>(this.apiAbout);
   }
 }

@@ -6,12 +6,13 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class NewsService {
-  private apiUrl = "https://shark-app-23npe.ondigitalocean.app/api/v1/posts/";
-  id = "3496df27-764b-4f87-bd17-c1d7c128a734";
+  private apiUrl =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/posts/";
+
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any> {
-    const url = `${this.apiUrl}?client=${this.id}`;
+    const url = `${this.apiUrl}`;
     return this.http.get<any>(url);
   }
   getNewsBySlug(slug: string): Observable<any> {

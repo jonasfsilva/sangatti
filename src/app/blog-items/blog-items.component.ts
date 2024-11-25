@@ -19,7 +19,7 @@ export class BlogItemsComponent {
   ngOnInit() {
     this.sectionService.getPost().subscribe(
       (response) => {
-        this.posts = response.slice(0, 4);
+        this.posts = response;
       },
       (error) => {
         console.error("Erro ao carregar notícias:", error);

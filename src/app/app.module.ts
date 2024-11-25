@@ -12,6 +12,7 @@ import { HomeComponent } from "./home/home.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    SobreNosComponent,
   ],
   imports: [
     BrowserModule,

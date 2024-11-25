@@ -1,15 +1,14 @@
+import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { SectionService } from "../services/services.service";
-import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  selector: "app-sobre-nos",
+  templateUrl: "./sobre-nos.component.html",
+  styleUrls: ["./sobre-nos.component.scss"],
 })
-export class HeaderComponent {
-  menus: any;
-  showMenu = false;
+export class SobreNosComponent {
+  about: any;
   constructor(
     private sectionService: SectionService,
     private http: HttpClient
@@ -17,13 +16,11 @@ export class HeaderComponent {
   ngOnInit() {
     this.goMenu();
   }
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
-  }
+
   goMenu() {
-    this.sectionService.getMenu().subscribe(
+    this.sectionService.getAbout().subscribe(
       (data) => {
-        this.menus = data;
+        this.about = data;
         console.log("Section menu:", data);
       },
       (error) => {
