@@ -2,7 +2,6 @@
   <app-header></app-header>
 
   <div class="relative mt-20 bg-white">
-    <!-- Show this image for larger screens -->
     <a href="https://wa.me/5511980720119" target="_blank" title="">
       <img
         *ngIf="!isMobile"
@@ -10,7 +9,6 @@
         src="../assets/images/banner.png"
         alt="" />
 
-      <!-- Show this image for smaller screens -->
       <img
         *ngIf="isMobile"
         class="object-cover object-right w-full h-full lg:object-center"
@@ -39,10 +37,10 @@
         <div>
           <h2
             class="text-xl font-bold leading-tight text-white sm:text-2xl lg:text-3xl lg:leading-tight">
-            {{ logosList.main_text }}
+            {{ logosList?.main_text }}
           </h2>
           <p class="mt-4 text-base text-gray-50">
-            {{ logosList.secondary_text }}
+            {{ logosList?.secondary_text }}
           </p>
         </div>
       </div>
@@ -74,7 +72,7 @@
               class="flex flex-wrap items-center justify-center gap-4 sm:gap-y-4 md:gap-4"
               style="min-width: 720px">
               <img
-                *ngFor="let logo of logosList.images"
+                *ngFor="let logo of logosList?.images"
                 class="object-contain bg-white rounded-lg py-2 w-32 h-32 max-w-full sm:h-10 md:h-14 sm:w-44"
                 [src]="logo.image" />
             </div>
@@ -131,35 +129,33 @@
         </div>
       </div>
 
-      <div class="">
-        <div class="relative overflow-hidden">
-          <div class="relative mx-auto">
-            <div class="overflow-hidden">
-              <div
-                class="flex transition-transform duration-500 ease-in-out"
-                [ngStyle]="{
-                  transform: 'translateX(-' + currentSlide * 100 + '%)'
-                }">
+      <div class="relative overflow-hidden">
+        <div class="relative mx-auto">
+          <div class="overflow-hidden">
+            <!-- Slider Wrapper -->
+            <div class="relative w-full col-span-3 mx-auto mb-8">
+              <div class="overflow-hidden">
+                <!-- Sliding Images -->
                 <div
-                  *ngFor="let image of sectionMap.images"
-                  class="w-full flex-shrink-0">
-                  <img
-                    [src]="image.image"
-                    alt="Slide Image"
-                    class="w-full rounded-3xl" />
+                  class="flex transition-transform duration-500 ease-in-out"
+                  [ngStyle]="{
+                    transform:
+                      'translateX(-' +
+                      (currentSlide['sectionMap'] || 0) * 100 +
+                      '%)'
+                  }">
+                  <!-- Render Each Image -->
+                  <div
+                    *ngFor="let image of sectionMap?.images || []"
+                    class="w-full flex-shrink-0">
+                    <img
+                      [src]="image.image"
+                      alt="Slide Image"
+                      class="w-full rounded-3xl" />
+                  </div>
                 </div>
               </div>
             </div>
-            <button
-              (click)="prevSlide()"
-              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-              ‹
-            </button>
-            <button
-              (click)="nextSlide()"
-              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-              ›
-            </button>
           </div>
         </div>
       </div>
@@ -216,32 +212,37 @@
       <div class="lg:col-span-3 lg:order-last">
         <div class="relative overflow-hidden">
           <div class="relative w-full max-w-2xl mx-auto">
-            <div class="overflow-hidden">
-              <div
-                class="flex transition-transform duration-500 ease-in-out"
-                [ngStyle]="{
-                  transform: 'translateX(-' + currentSlide * 100 + '%)'
-                }">
-                <div
-                  *ngFor="let image of sectionNr.images"
-                  class="w-full flex-shrink-0">
-                  <img
-                    [src]="image.image"
-                    alt="Slide Image"
-                    class="w-full rounded-3xl" />
+            <div class="relative overflow-hidden">
+              <div class="relative mx-auto">
+                <div class="overflow-hidden">
+                  <!-- Slider Wrapper -->
+
+                  <div class="relative w-full col-span-3 mx-auto mb-8">
+                    <div class="overflow-hidden">
+                      <!-- Sliding Images -->
+                      <div
+                        class="flex transition-transform duration-500 ease-in-out"
+                        [ngStyle]="{
+                          transform:
+                            'translateX(-' +
+                            (currentSlide['sectionNr'] || 0) * 100 +
+                            '%)'
+                        }">
+                        <!-- Render Each Image -->
+                        <div
+                          *ngFor="let image of sectionNr?.images || []"
+                          class="w-full flex-shrink-0">
+                          <img
+                            [src]="image.image"
+                            alt="Slide Image"
+                            class="w-full rounded-3xl" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <button
-              (click)="prevSlide()"
-              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-              ‹
-            </button>
-            <button
-              (click)="nextSlide()"
-              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-              ›
-            </button>
           </div>
         </div>
       </div>
@@ -309,33 +310,29 @@
       class="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-10 md:gap-x-16">
       <!-- Coluna da imagem ocupando 3/10 (30%) -->
       <div class="relative w-full col-span-3 mx-auto">
-        <div class="overflow-hidden">
-          <div
-            class="flex transition-transform duration-500 ease-in-out"
-            [ngStyle]="{
-              transform: 'translateX(-' + currentSlide * 100 + '%)'
-            }">
+        <div class="relative w-full col-span-3 mx-auto mb-8">
+          <div class="overflow-hidden">
+            <!-- Sliding Images -->
             <div
-              *ngFor="let image of sectionProjetos.images"
-              class="w-full flex-shrink-0">
-              <img
-                [src]="image.image"
-                alt="Slide Image"
-                class="w-full rounded-3xl" />
+              class="flex transition-transform duration-500 ease-in-out"
+              [ngStyle]="{
+                transform:
+                  'translateX(-' +
+                  (currentSlide['sectionProjetos'] || 0) * 100 +
+                  '%)'
+              }">
+              <!-- Render Each Image -->
+              <div
+                *ngFor="let image of sectionProjetos?.images || []"
+                class="w-full flex-shrink-0">
+                <img
+                  [src]="image.image"
+                  alt="Slide Image"
+                  class="w-full rounded-3xl" />
+              </div>
             </div>
           </div>
         </div>
-
-        <button
-          (click)="prevSlide()"
-          class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-          ‹
-        </button>
-        <button
-          (click)="nextSlide()"
-          class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-          ›
-        </button>
       </div>
 
       <!-- Coluna do texto ocupando 7/10 (70%) -->
@@ -353,7 +350,7 @@
             class="grid grid-cols-1 mt-8 sm:grid-cols-2 md:mt-16 xl:mt-10 gap-x-2 gap-y-2">
             <div
               class="flex items-start bg-white rounded-md py-3 px-3"
-              *ngFor="let item of sectionProjetos?.topics">
+              *ngFor="let item of sectionProjetos?.topics | slice : 0 : 7">
               <svg
                 class="w-6 h-6 text-gray-700 shrink-0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -384,101 +381,27 @@
     <div class="mt-10">
       <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-y-20 lg:gap-x-16">
-          <div class="relative flex flex-row items-start lg:flex-col">
+          <div
+            *ngFor="
+              let item of sectionProjetos?.topics | slice : 7;
+              let i = index
+            "
+            class="relative flex flex-row items-start lg:flex-col">
             <span
               class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
               aria-hidden="true"></span>
 
             <div
               class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-transparent relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-              01
+              {{ i + 1 }}
             </div>
+
             <div class="ml-6 lg:ml-0 lg:mt-8">
               <h3 class="text-sm font-semibold text-gray-900">
-                Identificação Demanda
+                {{ item?.main_text }}
               </h3>
               <p class="mt-4 text-sm font-normal text-gray-700">
-                Reuniões de alinhamento da necessidade e funcionabilidade do
-                produto. Escolha dos processos de fabricação
-              </p>
-            </div>
-          </div>
-
-          <div class="relative flex flex-row items-start lg:flex-col">
-            <span
-              class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-              aria-hidden="true"></span>
-
-            <div
-              class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-transparent relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-              02
-            </div>
-            <div class="ml-6 lg:ml-0 lg:mt-8">
-              <h3 class="text-sm font-semibold text-gray-900">
-                Pré Engenharia
-              </h3>
-              <p class="mt-4 text-sm font-normal text-gray-700">
-                Mapeamento da Soluções necessárias. Desenho preliminares básicos
-              </p>
-            </div>
-          </div>
-
-          <div class="relative flex flex-row items-start lg:flex-col">
-            <span
-              class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-              aria-hidden="true"></span>
-
-            <div
-              class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-transparent relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-              03
-            </div>
-            <div class="ml-6 lg:ml-0 lg:mt-8">
-              <h3 class="text-sm font-semibold text-gray-900">
-                Projeto Técnico
-              </h3>
-              <p class="mt-4 text-sm font-normal text-gray-700">
-                Cálculos D. Projeto mecânico 3D. Análises Estruturais e
-                Dinâmicas. DFM (Design for Manufacturing)
-              </p>
-            </div>
-          </div>
-
-          <div class="relative flex flex-row items-start lg:flex-col">
-            <span
-              class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-              aria-hidden="true"></span>
-
-            <div
-              class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-transparent relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-              04
-            </div>
-            <div class="ml-6 lg:ml-0 lg:mt-8">
-              <h3 class="text-sm font-semibold text-gray-900">
-                Entrega Documentação
-              </h3>
-              <p class="mt-4 text-sm font-normal text-gray-700">
-                Desenhos técnicos dos componentes, subconjunto e conjunto
-                completo. POP Montagem: Processo Operacional de Montagem do
-                produto. Manual de Instrução. Memorial de Cálculo
-              </p>
-            </div>
-          </div>
-
-          <div class="relative flex flex-row items-start lg:flex-col">
-            <span
-              class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
-              aria-hidden="true"></span>
-
-            <div
-              class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-transparent relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-              05
-            </div>
-            <div class="ml-6 lg:ml-0 lg:mt-8">
-              <h3 class="text-sm font-semibold text-gray-900">
-                Prototipagem e Fabricação
-              </h3>
-              <p class="mt-4 text-sm font-normal text-gray-700">
-                Fabricação Industrial. Fabricação de prototipagem
+                {{ item?.secondary_text }}
               </p>
             </div>
           </div>
@@ -494,16 +417,16 @@
         <div class="max-w-lg lg:max-w-none">
           <h2
             class="mt-6 text-xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            {{ clima.title }}
+            {{ clima?.title }}
           </h2>
           <p class="text-sm mb-3 mt-3 font-semibold text-gray-700">
-            {{ clima.secondary_text }}
+            {{ clima?.secondary_text }}
           </p>
         </div>
 
         <div
           class="grid grid-cols-1 mt-4 sm:grid-cols-1 md:mt-1 xl:mt-1 gap-x6 gap-y-8">
-          <div class="flex items-start" *ngFor="let item of clima.topics">
+          <div class="flex items-start" *ngFor="let item of clima?.topics">
             <svg
               class="w-6 h-6 text-gray-600 shrink-0"
               xmlns="http://www.w3.org/2000/svg"
@@ -539,13 +462,16 @@
       <div class="lg:col-span-3">
         <div class="relative w-full col-span-3 mx-auto">
           <div class="overflow-hidden">
+            <!-- Sliding Images -->
             <div
               class="flex transition-transform duration-500 ease-in-out"
               [ngStyle]="{
-                transform: 'translateX(-' + currentSlide * 100 + '%)'
+                transform:
+                  'translateX(-' + (currentSlide['clima'] || 0) * 100 + '%)'
               }">
+              <!-- Render Each Image -->
               <div
-                *ngFor="let image of clima.images"
+                *ngFor="let image of clima?.images || []"
                 class="w-full flex-shrink-0">
                 <img
                   [src]="image.image"
@@ -554,16 +480,6 @@
               </div>
             </div>
           </div>
-          <button
-            (click)="prevSlide()"
-            class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-            ‹
-          </button>
-          <button
-            (click)="nextSlide()"
-            class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-            ›
-          </button>
         </div>
       </div>
     </div>
@@ -629,29 +545,26 @@
       <div class="lg:col-span-3">
         <div class="relative w-full max-w-3xl mx-auto">
           <div class="overflow-hidden">
+            <!-- Sliding Images -->
             <div
               class="flex transition-transform duration-500 ease-in-out"
               [ngStyle]="{
-                transform: 'translateX(-' + currentSlide * 100 + '%)'
+                transform:
+                  'translateX(-' +
+                  (currentSlide['sectionLinha'] || 0) * 100 +
+                  '%)'
               }">
-              <div *ngFor="let image of images" class="w-full flex-shrink-0">
+              <!-- Render Each Image -->
+              <div
+                *ngFor="let image of sectionLinha?.images || []"
+                class="w-full flex-shrink-0">
                 <img
-                  [src]="image"
+                  [src]="image.image"
                   alt="Slide Image"
                   class="w-full rounded-3xl" />
               </div>
             </div>
           </div>
-          <button
-            (click)="prevSlide()"
-            class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-            ‹
-          </button>
-          <button
-            (click)="nextSlide()"
-            class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200">
-            ›
-          </button>
         </div>
       </div>
     </div>
@@ -714,14 +627,14 @@
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-20 lg:gap-x-16">
         <div
           class="relative flex flex-row items-start lg:flex-col"
-          *ngFor="let item of sectionInstalacao?.topics">
+          *ngFor="let item of sectionInstalacao?.topics; let i = index">
           <span
             class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
             aria-hidden="true"></span>
 
           <div
             class="inline-flex items-center justify-center ring-[20px] lg:ring-[0] ring-white relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            01
+            {{ i + 1 }}
           </div>
           <div class="ml-6 lg:ml-0 lg:mt-8">
             <h3 class="text-sm font-semibold text-gray-900">
@@ -743,27 +656,24 @@
       <div class="h-full w-full mr-0 max-w-3xl mx-auto relative">
         <div class="overflow-hidden h-full">
           <div
-            class="flex h-full transition-transform duration-500 ease-in-out"
+            class="flex transition-transform duration-500 ease-in-out"
             [ngStyle]="{
-              transform: 'translateX(-' + currentSlide * 100 + '%)'
+              transform:
+                'translateX(-' +
+                (currentSlide['sectionLaudos'] || 0) * 100 +
+                '%)'
             }">
+            <!-- Render Each Image -->
             <div
-              *ngFor="let image of sectionLaudos.images"
-              class="w-full h-full flex-shrink-0">
-              <img [src]="image.image" alt="Slide Image" class="w-full" />
+              *ngFor="let image of sectionLaudos?.images || []"
+              class="w-full flex-shrink-0">
+              <img
+                [src]="image.image"
+                alt="Slide Image"
+                class="w-full rounded-3xl mt-2" />
             </div>
           </div>
         </div>
-        <button
-          (click)="prevSlide()"
-          class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200 z-10">
-          ‹
-        </button>
-        <button
-          (click)="nextSlide()"
-          class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 text-white px-3 py-2 rounded-full shadow-md focus:outline-none hover:bg-gray-200 z-10">
-          ›
-        </button>
       </div>
     </div>
 
@@ -786,14 +696,14 @@
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-20 lg:gap-x-16">
         <div
           class="relative flex flex-row items-start lg:flex-col"
-          *ngFor="let item of sectionLaudos?.topics">
+          *ngFor="let item of sectionLaudos?.topics; let i = index">
           <span
             class="absolute w-px h-full -ml-px border-l-2 border-gray-200 border-dashed lg:border-l-0 lg:border-t-2 top-16 left-6 sm:left-8 lg:w-full lg:h-0 lg:top-8 lg:left-0"
             aria-hidden="true"></span>
 
           <div
             class="inline-flex items-center justify-center ring-[20px] lg:ring-[36px] ring-gray-100 relative w-12 h-12 text-xl font-medium text-white bg-gray-800 rounded-full shrink-0 sm:text-3xl sm:h-16 sm:w-16">
-            01
+            {{ i + 1 }}
           </div>
           <div class="ml-6 lg:ml-0 lg:mt-8">
             <h3 class="text-sm font-semibold text-gray-900">

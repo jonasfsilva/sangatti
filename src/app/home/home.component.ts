@@ -6,10 +6,24 @@ interface SectionLinha {
   main_text: string; // Required property
   secondary_text: string;
   topics: Topic[];
+  images: any;
 }
-
 interface Topic {
   id: number;
+  main_text: string;
+  secondary_text: string;
+  order: number;
+}
+
+interface SectionProjetos {
+  title: string;
+  secondary_text: string;
+  images: { image: string }[]; // Array de objetos de imagens
+  topics: Topic[]; // Reutilizando a interface Topic já definida
+}
+interface Topic {
+  id: number;
+  title: any;
   main_text: string;
   secondary_text: string;
   order: number;
@@ -23,13 +37,33 @@ export class HomeComponent {
   title = "engenharia";
   isMobile: boolean = false;
   sectionData: any;
-  sectionProjetos: any;
+  sectionProjetos: SectionProjetos = {
+    title: "",
+    secondary_text: "",
+    images: [],
+    topics: [],
+  };
   sectionNr: any;
+
+  sectionLinha: SectionLinha = {
+    main_text: "",
+    secondary_text: "",
+    topics: [],
+    images: [],
+  };
+  sectionInstalacao: any;
+  intervalId: any;
+
   expanded = false;
   contactForm: FormGroup;
   currentSlideLogo = 0;
   sectionMap: any;
   listTestemunhas: any;
+  currentSlideNr: number = 0;
+
+  sliders: any[] = [];
+  currentSlide: { [key: string]: number } = {};
+  intervals: { [key: string]: any } = {};
 
   constructor(
     private fb: FormBuilder,
@@ -43,51 +77,20 @@ export class HomeComponent {
       company: [""],
       text: ["", Validators.required],
     });
+    this.sliders.forEach((slider) => {
+      this.currentSlide[slider.id] = 0;
+      this.startAutoSlide(slider.id);
+    });
   }
-  logos = [
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/waverio.svg",
-      alt: "Waverio",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/logoipsum.svg",
-      alt: "Logoipsum",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/alterbone.svg",
-      alt: "Alterbone",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/carbonia.svg",
-      alt: "Carbonia",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/tinygone.svg",
-      alt: "Tinygone",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/preso.svg",
-      alt: "Preso",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/ridoria.svg",
-      alt: "Ridoria",
-    },
-    {
-      src: "https://landingfoliocom.imgix.net/store/collection/saasui/images/cloud-logos/3/incanto.svg",
-      alt: "Incanto",
-    },
-  ];
+
   logosList: any;
   currentIndex = 0;
-  visibleLogos = this.logos.slice(0, 4);
   sectionLaudos: any;
   currentIndexComenter = 0;
   clima: any;
   ngOnInit() {
     this.autoScroll();
     this.checkScreenSize();
-    this.startAutoScroll();
     this.fetchSectionData();
     this.fetchProjetos();
     this.fetchNr();
@@ -98,6 +101,10 @@ export class HomeComponent {
     this.testemunhas();
     this.listClima();
     this.getLogos();
+  }
+  ngOnDestroy(): void {
+    // Clear interval when component is destroyed
+    clearInterval(this.intervalId);
   }
 
   getLogos() {
@@ -158,232 +165,15 @@ export class HomeComponent {
   toggleMenu() {
     this.expanded = !this.expanded;
   }
-  projetos = [
-    "../assets/images/projeto1.png",
-    "../assets/images/projeto2.png",
-    "../assets/images/projeto1.png",
-  ];
-  imagesLaudos = [
-    "../assets/images/esva.png",
-    "../assets/images/esva.png",
-    "../assets/images/esva.png",
-  ];
-  images = [
-    "../assets/images/s1.png",
-    "../assets/images/s2.png",
-    "../assets/images/s3.png",
-  ];
-  imgnr = [
-    "../assets/images/NR2.png",
-    "../assets/images/NR1.png",
-    "../assets/images/NR2.png",
-  ];
-  logoss = [
-    [
-      {
-        src: "../assets/images/logo9.jpg",
-        alt: "Waverio",
-      },
-      {
-        src: "../assets/images/logo13.jpg",
-        alt: "Logoipsum",
-      },
-      {
-        src: "../assets/images/logo7.jpg",
-        alt: "Alterbone",
-      },
-      {
-        src: "../assets/images/logo22.jpg",
-        alt: "Carbonia",
-      },
-      {
-        src: "../assets/images/logo15.jpg",
-        alt: "Tinygone",
-      },
-      {
-        src: "../assets/images/logo6.jpg",
-        alt: "Preso",
-      },
-      {
-        src: "../assets/images/logo11.jpg",
-        alt: "Ridoria",
-      },
-      {
-        src: "../assets/images/logo20.jpg",
-        alt: "Incanto",
-      },
-
-      {
-        src: "../assets/images/logo23.jpg",
-        alt: "Preso",
-      },
-    ],
-    [
-      {
-        src: "../assets/images/logo1.webp",
-        alt: "Tinygone",
-      },
-      {
-        src: "../assets/images/newhol.png",
-        alt: "Preso",
-      },
-      {
-        src: "../assets/images/logo16.jpg",
-        alt: "Ridoria",
-      },
-      {
-        src: "../assets/images/logo18.jpg",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo4.png",
-        alt: "Tinygone",
-      },
-      {
-        src: "../assets/images/logo28.jpg",
-        alt: "Preso",
-      },
-      {
-        src: "../assets/images/logo27.jpg",
-        alt: "Ridoria",
-      },
-      {
-        src: "../assets/images/logo12.jpg",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo2.webp",
-        alt: "Tinygone",
-      },
-    ],
-    [
-      {
-        src: "../assets/images/logo10.jpg",
-        alt: "Ridoria",
-      },
-      {
-        src: "../assets/images/logo8.jpg",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo3.png",
-        alt: "Tinygone",
-      },
-      {
-        src: "../assets/images/logo21.jpg",
-        alt: "Preso",
-      },
-      {
-        src: "../assets/images/logo5.webp",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo26.png",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo25.png",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo17.jpg",
-        alt: "Incanto",
-      },
-      {
-        src: "../assets/images/logo29.jpg",
-        alt: "Incanto",
-      },
-    ],
-  ];
-  sectionLinha: SectionLinha = {
-    main_text: "", // Provide a default empty string for main_text
-    secondary_text: "",
-    topics: [],
-  };
-  sectionInstalacao: any;
-  currentSlide = 0;
-
-  prevSlide() {
-    this.currentSlide =
-      this.currentSlide === 0 ? this.images.length - 1 : this.currentSlide - 1;
-  }
-
-  nextSlide() {
-    this.currentSlide =
-      this.currentSlide === this.images.length - 1 ? 0 : this.currentSlide + 1;
-  }
-
-  nextLogo() {
-    this.currentIndex = (this.currentIndex + 1) % this.logos.length;
-    this.updateVisibleLogos();
-  }
-
-  prevLogo() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.logos.length) % this.logos.length;
-    this.updateVisibleLogos();
-  }
-
-  updateVisibleLogos() {
-    const start = this.currentIndex;
-    const end = (start + 4) % this.logos.length;
-    if (end > start) {
-      this.visibleLogos = this.logos.slice(start, end);
-    } else {
-      this.visibleLogos = [
-        ...this.logos.slice(start),
-        ...this.logos.slice(0, end),
-      ];
-    }
-  }
-
-  startAutoScroll() {
-    setInterval(() => {
-      this.nextLogo();
-    }, 3000);
-  }
-
-  allImages = [
-    { src: "../assets/images/esva.png", alt: "Image 1" },
-    { src: "../assets/images/esva.png", alt: "Image 2" },
-    { src: "../assets/images/esva.png", alt: "Image 3" },
-  ];
-
-  visibleImages = this.allImages.slice(0, 1); // Mostra a primeira imagem
-  currentIndexImages = 0;
-
-  prevImage() {
-    this.currentIndexImages =
-      (this.currentIndexImages - 1 + this.allImages.length) %
-      this.allImages.length;
-    this.updateVisibleImages();
-  }
-
-  nextImage() {
-    this.currentIndexImages =
-      (this.currentIndexImages + 1) % this.allImages.length;
-    this.updateVisibleImages();
-  }
-
-  updateVisibleImages() {
-    this.visibleImages = this.allImages.slice(
-      this.currentIndexImages,
-      this.currentIndexImages + 1
-    );
-    if (this.visibleImages.length < 1) {
-      this.visibleImages = this.visibleImages.concat(
-        this.allImages.slice(0, 1 - this.visibleImages.length)
-      );
-    }
-  }
 
   prevSlideLogo() {
     this.currentSlideLogo =
-      (this.currentSlideLogo - 1 + this.logoss.length) % this.logoss.length;
+      (this.currentSlideLogo - 1 + this.logosList.length) %
+      this.logosList.length;
   }
 
   nextSlideLogo() {
-    this.currentSlideLogo = (this.currentSlideLogo + 1) % this.logoss.length;
+    this.currentSlideLogo = (this.currentSlideLogo + 1) % this.logosList.length;
   }
   currentTestimonialIndex: number = 0;
 
@@ -420,21 +210,59 @@ export class HomeComponent {
     this.sectionService.getSectionNr().subscribe(
       (data) => {
         this.sectionNr = data;
+        console.log("SectionNr Data:", data);
+
+        const sliderId = "sectionNr"; // Unique ID for this slider
+        if (this.sectionNr?.images?.length > 0) {
+          this.currentSlide[sliderId] = 0; // Start from the first image
+          this.startAutoSlide(sliderId); // Start auto-slide for this slider
+        }
       },
       (error) => {
-        console.error("Error fetching section data:", error);
+        console.error("Error fetching sectionNr data:", error);
       }
     );
   }
-  fetchMap() {
+
+  fetchMap(): void {
     this.sectionService.getMap().subscribe(
       (data) => {
+        console.log("Map Data:", data);
         this.sectionMap = data;
+
+        if (this.sectionMap?.images?.length > 0) {
+          const sliderId = "sectionMap"; // Unique ID for this slider
+          this.currentSlide[sliderId] = 0; // Initialize to the first slide
+
+          // Start auto-slide only if more than one image
+          if (this.sectionMap.images.length > 1) {
+            this.startAutoSlide(sliderId);
+          }
+        }
       },
       (error) => {
-        console.error("Error fetching section data:", error);
+        console.error("Error fetching sectionMap data:", error);
       }
     );
+  }
+
+  startAutoSlide(sliderId: string): void {
+    if (!this.intervals[sliderId]) {
+      console.log(`Starting auto-slide for ${sliderId}`);
+      this.intervals[sliderId] = setInterval(() => {
+        const slider = this.sectionNr; // Assuming sliderId corresponds to sectionNr
+        if (slider?.images?.length > 1) {
+          // Update the slide index cyclically
+          this.currentSlide[sliderId] =
+            (this.currentSlide[sliderId] + 1) % slider.images.length;
+          console.log(
+            `Slider ${sliderId} moved to index ${this.currentSlide[sliderId]}`
+          );
+        } else {
+          console.log(`Slider ${sliderId} has only one image, no auto-slide.`);
+        }
+      }, 5000); // Change every 5 seconds
+    }
   }
   fetchLinha() {
     this.sectionService.getLinha().subscribe(
