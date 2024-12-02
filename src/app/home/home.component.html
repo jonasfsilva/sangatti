@@ -66,10 +66,8 @@
   </div>
 </section>
 
-
-
 <section
-  id="sobre"
+  id="{{ sectionMap?.slug }}"
   *ngIf="sectionMap.active === true"
   class="pb-10 sm:mt-0 mt-10 bg-white">
   <div class="max-w-7xl px-4 mx-auto sm:px-2 lg:px-2">
@@ -176,7 +174,10 @@
   </div>
 </section> -->
 
-<section class="py-12 bg-gray-800 sm:py-16 lg:py-20 xl:py-24" id="NR12">
+<section
+  id="{{ sectionNr?.slug }}"
+  class="py-12 bg-gray-800 sm:py-16 lg:py-20 xl:py-24"
+  id="NR12">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-7 lg:gap-x-5">
       <div class="lg:col-span-3 lg:order-last">
@@ -274,7 +275,10 @@
   </div>
 </section>
 
-<section id="projeto" class="py-12 bg-gray-100 sm:py-12 lg:py-12">
+<section
+  id="projeto"
+  id="{{ sectionProjetos?.slug }}"
+  class="py-12 bg-gray-100 sm:py-12 lg:py-12">
   <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
     <div
       class="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-10 md:gap-x-16">
@@ -381,7 +385,9 @@
   </section>
 </section>
 
-<section class="py-12 bg-white sm:py-16 lg:py-20 xl:py-14">
+<section
+  id="{{ clima?.slug }}"
+  class="py-12 bg-white sm:py-16 lg:py-20 xl:py-14">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-8 lg:gap-x-6 xl:gap-x-6 gap-y-6">
       <div class="flex flex-col justify-between lg:col-span-5 xl:pr-24">
@@ -419,7 +425,7 @@
             </h3>
           </div>
         </div>
-        <div class="flex  mt-10 justify-centersm:justify-start w-full">
+        <div class="flex mt-10 justify-centersm:justify-start w-full">
           <a
             href="https://wa.me/5511980720119"
             target="_blank"
@@ -457,7 +463,10 @@
   </div>
 </section>
 
-<section class="bg-gray-100 py-10 sm:py-16 lg:py-20 xl:py-24" id="vida">
+<section
+  id="{{ sectionLinha?.slug }}"
+  class="bg-gray-100 py-10 sm:py-16 lg:py-20 xl:py-24"
+  id="vida">
   <div class="px-4 mx-auto sm:px-6 max-w-7xl">
     <div
       class="grid grid-cols-1 lg:grid-cols-8 lg:gap-x-16 xl:gap-x-24 gap-y-12">
@@ -580,6 +589,7 @@
 </section>
 
 <section
+  id="{{ sectionInstalacao?.slug }}"
   *ngIf="sectionInstalacao.active === true"
   class="py-12 sm:py-16 lg:py-10">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -625,7 +635,7 @@
   </div>
 </section>
 
-<section id="laudos" *ngIf="sectionLaudos.active === true">
+<section id="{{ sectionLaudos?.slug }}" *ngIf="sectionLaudos.active === true">
   <div class="relative bg-gray-800">
     <div class="h-56 sm:h-72 md:absolute md:right-0 md:h-full md:w-1/2">
       <div class="h-full w-full mr-0 max-w-3xl mx-auto relative">
@@ -695,6 +705,7 @@
 </section>
 
 <section
+  id="{{ listTestemunhas?.slug }}"
   *ngIf="listTestemunhas.active === true"
   class="py-12 bg-white sm:py-16 lg:py-10 xl:py-10 mb-12">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -757,7 +768,7 @@
   </div>
 </section>
 <app-blog-items></app-blog-items>
-<section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
+<section id="contato" class="py-10 bg-gray-100 sm:py-16 lg:py-24">
   <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <div class="max-w-2xl mx-auto text-center">
       <h2

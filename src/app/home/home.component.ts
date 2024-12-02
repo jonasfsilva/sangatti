@@ -7,6 +7,7 @@ interface SectionLinha {
   secondary_text: string;
   topics: Topic[];
   images: any;
+  slug: any;
 }
 interface Topic {
   id: number;
@@ -17,6 +18,7 @@ interface Topic {
 
 interface SectionProjetos {
   title: string;
+  slug: any;
   secondary_text: string;
   images: { image: string }[]; // Array de objetos de imagens
   topics: Topic[]; // Reutilizando a interface Topic já definida
@@ -39,6 +41,7 @@ export class HomeComponent {
   sectionData: any;
   sectionProjetos: SectionProjetos = {
     title: "",
+    slug: "",
     secondary_text: "",
     images: [],
     topics: [],
@@ -50,6 +53,7 @@ export class HomeComponent {
     secondary_text: "",
     topics: [],
     images: [],
+    slug: "",
   };
   sectionInstalacao: any;
   intervalId: any;
