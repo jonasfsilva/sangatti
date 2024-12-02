@@ -92,6 +92,7 @@ export class HomeComponent {
   sectionLaudos: any;
   currentIndexComenter = 0;
   clima: any;
+  auto: any;
   ngOnInit() {
     this.autoScroll();
     this.checkScreenSize();
@@ -105,10 +106,23 @@ export class HomeComponent {
     this.testemunhas();
     this.listClima();
     this.getLogos();
+    this.getAuto();
   }
   ngOnDestroy(): void {
     // Clear interval when component is destroyed
     clearInterval(this.intervalId);
+  }
+
+  getAuto() {
+    this.sectionService.getAuto().subscribe(
+      (data) => {
+        this.auto = data;
+        console.log("Section Data:", data);
+      },
+      (error) => {
+        console.error("Error fetching section data:", error);
+      }
+    );
   }
 
   getLogos() {

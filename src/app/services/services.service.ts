@@ -37,6 +37,9 @@ export class SectionService {
   private apiAbout =
     "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/sobre-nos";
 
+  private apiAuto =
+    "https://octopus-app-yiik3.ondigitalocean.app/sangatti/api/v1/sections/laudos-e-inspecoes-de-maquinas-autopropelidas";
+
   constructor(private http: HttpClient) {}
 
   getSectionData(): Observable<any> {
@@ -50,6 +53,9 @@ export class SectionService {
   }
   getMap(): Observable<any> {
     return this.http.get<any>(this.apiMap);
+  }
+  getAuto(): Observable<any> {
+    return this.http.get<any>(this.apiAuto);
   }
   getLinha(): Observable<any> {
     return this.http.get<any>(this.apiLinha);
