@@ -26,9 +26,8 @@
           <a [routerLink]="['/noticia', post.slug]" title="" class="">
             <p class="text-lg font-bold text-gray-900">{{ post.title }}</p>
             <p
-              class="mt-3 text-sm font-normal leading-6 text-gray-500 line-clamp-3">
-              {{ post.content | cleanHtml }}.
-            </p>
+              class="mt-3 text-sm font-normal leading-6 text-gray-500 line-clamp-3"
+              [innerHTML]="post.content"></p>
           </a>
         </div>
         <div class="px-4 py-5 mt-auto border-t border-gray-100 sm:px-6">
